@@ -1,0 +1,14 @@
+<form (ngSubmit)="salvar()" class="mb-3">
+    <div class="mb-3">
+      <label for="exampleInputText1" class="form-label">Nome:</label>
+      <input type="text" class="form-control" name="exampleInputText1" [(ngModel)]="carro.nome">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Ano:</label>
+      <input type="text" class="form-control" name="exampleInputPassword1" [(ngModel)]="carro.ano">
+    </div>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </div>
+    
+</form>

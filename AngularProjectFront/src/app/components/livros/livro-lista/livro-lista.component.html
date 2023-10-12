@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+    <h2>Lista de Livros</h2>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-between" style="margin-bottom: 1rem;">
+      <button (click)="cadastrar(modalLivro)" class="btn btn-success text-white">Nova Livro</button>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let livro of lista; let i = index">
+          <td>{{ livro.id }}</td>
+          <td>{{ livro.titulo }}</td>
+          <td>{{ livro.autor }}</td>
+          <td>
+            <button (click)="editar(modalLivro, livro, i)" class="btn btn-primary btn-sm" style="margin-right: 0.5rem;">Editar</button>
+            <button (click)="excluirLivro(livro)" class="btn btn-danger btn-sm">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  
+    
+    
+    <ng-template #modalLivro let-modal>
+    <div class="modal-header">
+      <h4 id="h4" class="modal-title"></h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      
+          <app-livro-detalhes [livro]="livroParaEditar" (retorno)="atualizarLista($event)" ></app-livro-detalhes>
+              
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+    </ng-template>

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <h2>Lista de Pessoas</h2>
+</div>
+<div class="container">
+  <div class="d-flex justify-content-between" style="margin-bottom: 1rem;">
+    <button (click)="cadastrar(modalPessoa)" class="btn btn-success text-white">Nova Pessoa</button>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>#ID</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pessoa of lista; let i = index">
+        <td>{{ pessoa.id }}</td>
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.idade }}</td>
+        <td>
+          <button (click)="editar(modalPessoa, pessoa, i)" class="btn btn-primary btn-sm" style="margin-right: 0.5rem;">Editar</button>
+          <button (click)="excluirPessoa(pessoa)" class="btn btn-danger btn-sm">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+  
+  
+  <ng-template #modalPessoa let-modal>
+  <div class="modal-header">
+    <h4 id="h4" class="modal-title"></h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    
+        <app-pessoa-detalhes [pessoa]="pessoaParaEditar" (retorno)="atualizarLista($event)" ></app-pessoa-detalhes>
+            
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+  </ng-template>

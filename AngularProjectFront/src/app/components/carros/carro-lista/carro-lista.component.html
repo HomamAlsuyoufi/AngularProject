@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+    <h2>Lista de Carros</h2>
+  </div>
+  <div class="container">
+    <div class="d-flex justify-content-between" style="margin-bottom: 1rem;">
+      <button (click)="cadastrar(modalCarro)" class="btn btn-success text-white">Nova Carro</button>
+    </div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th>Nome</th>
+          <th>Ano</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let carro of lista; let i = index">
+          <td>{{ carro.id }}</td>
+          <td>{{ carro.nome }}</td>
+          <td>{{ carro.ano }}</td>
+          <td>
+            <button (click)="editar(modalCarro, carro, i)" class="btn btn-primary btn-sm" style="margin-right: 0.5rem;">Editar</button>
+            <button (click)="excluirCarro(carro)" class="btn btn-danger btn-sm">Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
+  
+    
+    
+    <ng-template #modalCarro let-modal>
+    <div class="modal-header">
+      <h4 id="h4" class="modal-title"></h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      
+          <app-carro-detalhes [carro]="carroParaEditar" (retorno)="atualizarLista($event)" ></app-carro-detalhes>
+              
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+    </ng-template>
